@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Static theme values (colors, animations) ── */
+@theme {
+  --color-navy-900: #080808;
+  --color-navy-800: #111111;
+  --color-navy-700: #1C1C1C;
+  --color-gold-400: #F07820;
+  --color-gold-500: #D46010;
+  --color-gold-600: #A84800;
+  --color-slate: #9CA3AF;
+
+  --animate-fade-up: fade-up 0.7s ease forwards;
+  --animate-fade-in: fade-in 0.9s ease forwards;
+  --animate-blink: blink 0.8s step-end infinite;
+  --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
+  --animate-bounce: bounce 1s infinite;
 }
 
+/* ── Runtime CSS variable references ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Keyframes ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.7;  transform: scale(1.06); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+  50%       { transform: translateY(-25%); animation-timing-function: cubic-bezier(0,0,0.2,1); }
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #080808;
+  color: #ffffff;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: #111111; }
+::-webkit-scrollbar-thumb  { background: #BB3800; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #E05000; }
+
+/* Selection */
+::selection { background: rgba(255, 101, 0, 0.28); color: #ffffff; }
+
+/* ── Circuit grid background ── */
+.circuit-bg { position: relative; }
+.circuit-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 101, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 101, 0, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Utilities ── */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #F07820 30%, #F07820 70%, transparent);
+}
+
+.gold-glow {
+  box-shadow: 0 0 28px rgba(240, 120, 32, 0.18), 0 0 56px rgba(240, 120, 32, 0.07);
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Project card ── */
+.project-card {
+  background: #1C1C1C;
+  border: 1px solid rgba(187, 56, 0, 0.25);
+  border-radius: 14px;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  border-color: rgba(224, 80, 0, 0.55);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(255, 101, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Skill bar ── */
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #BB3800, #FF6500);
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.skill-bar-fill.animated {
+  width: var(--skill-width, 0%);
 }
