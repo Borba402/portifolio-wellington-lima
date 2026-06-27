@@ -95,11 +95,12 @@ export default function Hero() {
         {/* The photo */}
         <div className="relative w-full h-full" style={{ zIndex: 2 }}>
           <Image
-            src="/hero-photo.png"
-            alt="Wellington Lima — meio corpo em terno executivo"
+            src="/profile.png"
+            alt="Wellington Lima"
             fill
             className="object-cover object-top"
             priority
+            quality={95}
             sizes="56vw"
           />
           {/* Left gradient — dissolves photo edge into text zone */}
@@ -421,10 +422,11 @@ export default function Hero() {
       {/* Mobile photo — below text on small screens */}
       <div className="md:hidden relative w-full h-[340px]">
         <Image
-          src="/hero-photo.png"
+          src="/profile.png"
           alt="Wellington Lima"
           fill
           className="object-cover object-top"
+          quality={95}
           sizes="100vw"
         />
         <div
