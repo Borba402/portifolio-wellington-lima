@@ -5,147 +5,308 @@ const timelineSteps = [
   {
     year: "2016",
     title: "Ingresso no Exército",
-    subtitle: "Soldado - Ibirapuera",
-    description: "Ingresso nas Forças Armadas. Destacado por desempenho exemplar e selecionado para o Gabinete do CMSE.",
+    subtitle: "Soldado · Base Ibirapuera",
+    description: "Ingressou nas Forças Armadas. Destacado por desempenho exemplar e selecionado para o Gabinete do CMSE.",
+    highlight: false,
   },
   {
     year: "2017",
-    title: "Destaque & Confiança",
-    subtitle: "1º Colocado no CFC",
-    description: "Primeiro lugar no Curso de Formação de Cabos. Designado para funções de alta confiança da chefia direta.",
+    title: "1º Colocado no CFC",
+    subtitle: "Curso de Formação de Cabos",
+    description: "Primeiro lugar no CFC. Designado para funções de alta confiança da chefia direta.",
+    highlight: true,
   },
   {
     year: "2019",
-    title: "Liderança e Promoção",
-    subtitle: "Promovido a 3º Sargento",
-    description: "Conclusão do CFST. Supervisão de logística, gestão de equipes e coordenação de grandes eventos institucionais.",
+    title: "Promovido a 3º Sargento",
+    subtitle: "Liderança & Logística",
+    description: "Conclusão do CFST. Supervisão de aprovisionamento, gestão de equipes e coordenação de eventos institucionais.",
+    highlight: false,
   },
   {
     year: "2024",
-    title: "IA e Transição",
-    subtitle: "Licenciamento & Início",
-    description: "Licenciado com Carta de Referência. Início no Senac São Paulo para estudar IA, Machine Learning e Python.",
+    title: "Transição para IA",
+    subtitle: "Carta de Referência · Senac SP",
+    description: "Licenciado com Carta de Referência do Cel. Cesar Augusto Moura. Início da formação em IA, Machine Learning e Python.",
+    highlight: true,
   },
   {
     year: "2026",
     title: "Tecnologia de Impacto",
-    subtitle: "Evolução Contínua",
-    description: "Especialização prática em IA Generativa, processamento de dados e desenvolvimento de sistemas inteligentes.",
+    subtitle: "Em Evolução Contínua",
+    description: "Especialização em IA Generativa, análise de dados e desenvolvimento de sistemas inteligentes.",
+    highlight: false,
   },
+];
+
+const stats = [
+  { value: "8", label: "Anos no Exército Brasileiro" },
+  { value: "1º", label: "Colocado no Curso de Formação" },
+  { value: "3º", label: "Sargento — Carreira Militar" },
+  { value: "2024", label: "Início da jornada em IA" },
 ];
 
 export default function Sobre() {
   return (
-    <section id="sobre" className="bg-navy-800 py-24 lg:py-32 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-gold-600/3 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-navy-700/50 rounded-full blur-3xl pointer-events-none" />
+    <section id="sobre" className="bg-navy-900 py-24 lg:py-32 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(240,120,32,0.04) 0%, transparent 65%)", filter: "blur(80px)" }} />
+      <div className="absolute bottom-0 left-0 w-96 h-96 pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(139,92,246,0.03) 0%, transparent 65%)", filter: "blur(80px)" }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header Section */}
-        <div className="text-center mb-20">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5 }}
-            className="text-gold-500 text-xs sm:text-sm font-bold tracking-[0.25em] uppercase block mb-3"
-          >
-            Trajetória de Evolução
-          </motion.span>
-          
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-1 mb-6"
-          >
-            Da Disciplina Militar à <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-500">Inteligência Artificial</span>
-          </motion.h2>
-          
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="gold-line w-28 mx-auto mb-8 origin-center"
-          />
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-slate text-base sm:text-lg max-w-3xl mx-auto leading-relaxed"
-          >
-            A mesma dedicação, foco em resultados e resiliência que estruturaram 8 anos de carreira no Exército Brasileiro agora direcionam minha jornada na tecnologia. Não foi uma mudança de rumo, mas sim a aplicação de um método de trabalho rigoroso na vanguarda da Inteligência Artificial.
-          </motion.p>
-        </div>
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
-        {/* Timeline Component */}
-        <div className="relative mt-12 md:mt-24">
-          
-          {/* Desktop Line (Horizontal) */}
-          <div className="hidden md:block absolute top-[39px] left-8 right-8 h-0.5 bg-gradient-to-r from-gold-600/30 via-gold-400/40 to-transparent z-0" />
+          {/* ── Left — Texto + Stats ── */}
+          <div>
+            {/* Accent line */}
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="origin-left mb-6"
+              style={{ width: "40px", height: "2px", background: "#F07820" }}
+            />
 
-          {/* Mobile Line (Vertical) */}
-          <div className="md:hidden absolute left-6 top-2 bottom-2 w-0.5 bg-gradient-to-b from-gold-500/50 via-gold-500/20 to-transparent z-0" />
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              style={{ color: "#F07820", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", display: "block", marginBottom: "16px" }}
+            >
+              Trajetória de Evolução
+            </motion.span>
 
-          {/* Grid Layout (Desktop) / Vertical List (Mobile) */}
-          <div className="grid md:grid-cols-5 gap-12 md:gap-6 relative z-10">
-            {timelineSteps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                className="flex flex-col md:items-center text-left md:text-center relative group"
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "clamp(2.2rem, 5vw, 3.6rem)", lineHeight: "0.92", letterSpacing: "-0.03em", color: "#ffffff", marginBottom: "24px" }}
+            >
+              Da Disciplina<br />
+              Militar à{" "}
+              <span style={{ color: "#F07820", textShadow: "0 0 40px rgba(240,120,32,0.20)" }}>
+                Inteligência
+              </span>
+              <br />
+              <span style={{ color: "#F07820", textShadow: "0 0 40px rgba(240,120,32,0.20)" }}>
+                Artificial
+              </span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              style={{ color: "#9CA3AF", fontFamily: "var(--font-inter)", fontWeight: 300, fontSize: "clamp(0.875rem, 1.4vw, 1rem)", lineHeight: 1.8, maxWidth: "42ch", marginBottom: "16px" }}
+            >
+              A mesma <strong style={{ color: "#e5e7eb", fontWeight: 600 }}>dedicação e método</strong> que estruturaram 8 anos no Exército Brasileiro agora direcionam minha jornada na tecnologia.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.25, duration: 0.5 }}
+              style={{ color: "#6B7280", fontFamily: "var(--font-inter)", fontWeight: 300, fontSize: "clamp(0.85rem, 1.3vw, 0.95rem)", lineHeight: 1.8, maxWidth: "42ch", marginBottom: "40px" }}
+            >
+              Não foi uma mudança de rumo — foi a aplicação de um método de trabalho rigoroso na vanguarda da Inteligência Artificial.
+            </motion.p>
+
+            {/* Quote highlight */}
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              style={{ borderLeft: "3px solid #F07820", paddingLeft: "20px", marginBottom: "20px" }}
+            >
+              <p style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1rem, 1.6vw, 1.15rem)", color: "#e5e7eb", lineHeight: 1.5, fontStyle: "italic" }}>
+                "Licenciado com Carta de Referência — Coronel Cesar Augusto Moura, CMSE"
+              </p>
+              <p style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: "11px", color: "#4B5563", marginTop: "8px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                Exército Brasileiro · Fevereiro 2024
+              </p>
+            </motion.div>
+
+            {/* PDF button */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35, duration: 0.45 }}
+              style={{ marginBottom: "44px" }}
+            >
+              <a
+                href="/carta-de-referencia.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  background: "rgba(240,120,32,0.07)",
+                  border: "1px solid rgba(240,120,32,0.30)",
+                  borderRadius: "10px",
+                  padding: "11px 20px",
+                  textDecoration: "none",
+                  transition: "background 0.2s, border-color 0.2s, box-shadow 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(240,120,32,0.13)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,120,32,0.60)";
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(240,120,32,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(240,120,32,0.07)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,120,32,0.30)";
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+                }}
               >
-                
-                {/* Milestone Node */}
-                <div className="flex-shrink-0 mb-6 md:mb-8 flex items-center md:justify-center relative z-20 pl-4 md:pl-0">
-                  {/* Outer breathing ring */}
-                  <div className="w-11 h-11 rounded-full bg-navy-900 border-2 border-gold-500/30 flex items-center justify-center transition-all duration-300 group-hover:border-gold-400 group-hover:scale-105 shadow-xl relative">
-                    <span className="text-gold-400 font-bold text-sm tracking-tighter">
-                      {step.year.split(" ")[0]}
-                    </span>
-                    
-                    {/* Ring glow on hover */}
-                    <div className="absolute -inset-1 rounded-full bg-gold-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+                {/* PDF icon */}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ color: "#F07820", flexShrink: 0 }}>
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M14 2v6h6M9 13h6M9 17h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "12px", color: "#F07820", letterSpacing: "0.04em" }}>
+                  Ver Carta de Referência
+                </span>
+                {/* Official badge */}
+                <span style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "9px", color: "#6B7280", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "4px", padding: "2px 6px", letterSpacing: "0.10em", textTransform: "uppercase" }}>
+                  Oficial · PDF
+                </span>
+                {/* External arrow */}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ color: "#4B5563", flexShrink: 0 }}>
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </motion.div>
+
+            {/* Stats grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35, duration: 0.5 }}
+              className="grid grid-cols-2 gap-4"
+            >
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.35 + i * 0.08, duration: 0.4 }}
+                  style={{
+                    background: "rgba(255,255,255,0.025)",
+                    border: "1px solid rgba(240,120,32,0.12)",
+                    borderRadius: "14px",
+                    padding: "18px 20px",
+                    transition: "border-color 0.2s, background 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(240,120,32,0.35)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(240,120,32,0.05)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(240,120,32,0.12)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.025)";
+                  }}
+                >
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "#F07820", letterSpacing: "-0.03em", lineHeight: 1 }}>
+                    {stat.value}
                   </div>
-                </div>
-
-                {/* Mobile Anchor Point Indicator */}
-                <div className="absolute left-5 top-4 md:hidden w-3.5 h-3.5 rounded-full bg-gold-500 border-4 border-navy-800 z-10 -translate-x-1/2" />
-
-                {/* Step Info Content */}
-                <div className="pl-14 md:pl-0 flex-1">
-                  <span className="text-gold-400 font-bold text-xs uppercase tracking-widest block mb-1">
-                    {step.year}
-                  </span>
-                  
-                  <h3 className="font-display font-bold text-white text-lg sm:text-xl mb-1.5 transition-colors group-hover:text-gold-400 duration-300">
-                    {step.title}
-                  </h3>
-                  
-                  <div className="text-slate text-xs font-semibold uppercase tracking-wider mb-3 block">
-                    {step.subtitle}
+                  <div style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: "11px", color: "#6B7280", marginTop: "6px", lineHeight: 1.4 }}>
+                    {stat.label}
                   </div>
-                  
-                  <p className="text-slate/85 text-xs sm:text-sm leading-relaxed max-w-sm md:mx-auto">
-                    {step.description}
-                  </p>
-                </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
 
-              </motion.div>
-            ))}
+          {/* ── Right — Timeline vertical ── */}
+          <div className="relative">
+            {/* Vertical connecting line */}
+            <div
+              className="absolute left-[19px] top-3 bottom-3 w-px"
+              style={{ background: "linear-gradient(to bottom, #F07820, rgba(240,120,32,0.20) 80%, transparent)" }}
+            />
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+              {timelineSteps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ delay: i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative flex gap-6"
+                  style={{ paddingBottom: i < timelineSteps.length - 1 ? "32px" : "0" }}
+                >
+                  {/* Node */}
+                  <div style={{ flexShrink: 0, position: "relative", zIndex: 10 }}>
+                    <div style={{
+                      width: "38px", height: "38px", borderRadius: "50%",
+                      background: step.highlight ? "#F07820" : "#111111",
+                      border: `2px solid ${step.highlight ? "#F07820" : "rgba(240,120,32,0.35)"}`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      boxShadow: step.highlight ? "0 0 20px rgba(240,120,32,0.35)" : "none",
+                      transition: "all 0.3s",
+                    }}>
+                      <span style={{
+                        fontFamily: "var(--font-inter)", fontWeight: 800, fontSize: "9px",
+                        color: step.highlight ? "#ffffff" : "#F07820",
+                        letterSpacing: "0.05em",
+                      }}>
+                        {step.year.slice(2)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div
+                    style={{
+                      flex: 1, background: "rgba(255,255,255,0.02)",
+                      border: `1px solid ${step.highlight ? "rgba(240,120,32,0.25)" : "rgba(255,255,255,0.05)"}`,
+                      borderRadius: "14px", padding: "16px 20px",
+                      transition: "border-color 0.25s, background 0.25s",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(240,120,32,0.35)";
+                      (e.currentTarget as HTMLElement).style.background = "rgba(240,120,32,0.04)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = step.highlight ? "rgba(240,120,32,0.25)" : "rgba(255,255,255,0.05)";
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)";
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "4px" }}>
+                      <span style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "10px", color: "#F07820", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                        {step.year}
+                      </span>
+                      {step.highlight && (
+                        <span style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "8px", color: "#F07820", background: "rgba(240,120,32,0.12)", border: "1px solid rgba(240,120,32,0.30)", borderRadius: "4px", padding: "2px 7px", letterSpacing: "0.10em", textTransform: "uppercase" }}>
+                          Destaque
+                        </span>
+                      )}
+                    </div>
+                    <h3 style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "14px", color: "#ffffff", marginBottom: "3px", lineHeight: 1.3 }}>
+                      {step.title}
+                    </h3>
+                    <div style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: "10px", color: "#6B7280", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "8px" }}>
+                      {step.subtitle}
+                    </div>
+                    <p style={{ fontFamily: "var(--font-inter)", fontWeight: 300, fontSize: "12px", color: "#6B7280", lineHeight: 1.65 }}>
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
         </div>
-
       </div>
     </section>
   );

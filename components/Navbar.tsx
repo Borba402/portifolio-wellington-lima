@@ -106,7 +106,47 @@ export default function Navbar() {
           </div>
 
           {/* CTA desktop */}
-          <div className="hidden md:flex">
+          <div className="hidden md:flex items-center gap-3">
+            {/* Carta de Referência */}
+            <a
+              href="/carta-de-referencia.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "8px 14px",
+                border: "1px solid rgba(240,120,32,0.35)",
+                borderRadius: "8px",
+                background: "rgba(240,120,32,0.06)",
+                color: "#F07820",
+                fontFamily: "var(--font-inter)",
+                fontWeight: 600,
+                fontSize: "12px",
+                letterSpacing: "0.02em",
+                textDecoration: "none",
+                transition: "background 0.2s, border-color 0.2s, box-shadow 0.2s",
+                whiteSpace: "nowrap",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(240,120,32,0.14)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,120,32,0.65)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 16px rgba(240,120,32,0.20)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(240,120,32,0.06)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,120,32,0.35)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+              }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 2v6h6M9 13h6M9 17h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+              Carta de Referência
+            </a>
+
             <Link
               href="#contato"
               className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-bold text-navy-900 rounded-lg group bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 hover:text-white dark:text-navy-900 focus:ring-4 focus:outline-none focus:ring-gold-500/30 transition-all duration-300 hover:shadow-[0_0_20px_rgba(240,192,64,0.3)] hover:scale-105"
@@ -180,7 +220,33 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <div className="pt-4 px-4">
+              <div className="pt-2 px-4 flex flex-col gap-3">
+                <a
+                  href="/carta-de-referencia.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    padding: "12px",
+                    border: "1px solid rgba(240,120,32,0.35)",
+                    borderRadius: "12px",
+                    background: "rgba(240,120,32,0.06)",
+                    color: "#F07820",
+                    fontFamily: "var(--font-inter)",
+                    fontWeight: 600,
+                    fontSize: "13px",
+                    textDecoration: "none",
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14 2v6h6M9 13h6M9 17h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  Carta de Referência
+                </a>
                 <Link
                   href="#contato"
                   className="block text-center bg-gradient-to-r from-gold-500 to-gold-400 text-navy-900 font-bold py-3.5 rounded-xl hover:shadow-[0_0_20px_rgba(240,192,64,0.25)] transition-all duration-300"
