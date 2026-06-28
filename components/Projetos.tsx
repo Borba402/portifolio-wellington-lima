@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const GITHUB_USERNAME = "wellingtonborbalima";
+const GITHUB_USERNAME = "Borba402";
+const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
 
 interface Repo {
   id: number;
@@ -23,20 +24,21 @@ const LANG_COLORS: Record<string, string> = {
   TypeScript: "#3178C6",
   HTML: "#E34C26",
   CSS: "#563D7C",
-  Jupyter: "#DA5B0B",
-  Notebook: "#DA5B0B",
+  "Jupyter Notebook": "#DA5B0B",
   Shell: "#89E051",
+  Rust: "#DEA584",
+  Go: "#00ADD8",
 };
 
-function LanguageDot({ lang }: { lang: string | null }) {
-  if (!lang) return null;
-  const color = LANG_COLORS[lang] ?? "#A8B8D0";
-  return (
-    <div className="flex items-center gap-1.5">
-      <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: color }} />
-      <span className="text-slate text-xs font-semibold">{lang}</span>
-    </div>
-  );
+function timeAgo(dateStr: string): string {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const days = Math.floor(diff / 86400000);
+  if (days === 0) return "hoje";
+  if (days === 1) return "ontem";
+  if (days < 30) return `${days}d atrás`;
+  const months = Math.floor(days / 30);
+  if (months < 12) return `${months}m atrás`;
+  return `${Math.floor(months / 12)}a atrás`;
 }
 
 export default function Projetos() {
@@ -45,216 +47,256 @@ export default function Projetos() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=12`
-    )
+    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=18`)
       .then((res) => {
         if (!res.ok) throw new Error("not found");
         return res.json();
       })
       .then((data: Repo[]) => {
-        const filtered = data
-          .filter((r) => !r.fork)
-          .slice(0, 6);
-        setRepos(filtered);
+        setRepos(data.filter((r) => !r.fork).slice(0, 6));
         setLoading(false);
       })
-      .catch(() => {
-        setError(true);
-        setLoading(false);
-      });
+      .catch(() => { setError(true); setLoading(false); });
   }, []);
 
   return (
-    <section id="projetos" className="bg-navy-800 py-24 lg:py-32 relative overflow-hidden">
-      {/* Background vectors */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-gold-600/3 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-navy-700/50 rounded-full blur-3xl pointer-events-none" />
+    <section id="projetos" className="bg-navy-900 py-24 lg:py-32 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(240,120,32,0.04) 0%, transparent 70%)", filter: "blur(60px)" }} />
+      <div className="absolute bottom-0 left-0 w-80 h-80 pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(240,120,32,0.03) 0%, transparent 70%)", filter: "blur(60px)" }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-20">
+
+        {/* ── Header ── */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="origin-left mb-6"
+            style={{ width: "40px", height: "2px", background: "#F07820" }}
+          />
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-gold-500 text-xs sm:text-sm font-bold tracking-[0.25em] uppercase block mb-3"
+            style={{ color: "#F07820", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", display: "block", marginBottom: "14px" }}
           >
-            Portfólio em Construção
+            Portfólio no GitHub
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-1 mb-6"
+            transition={{ delay: 0.1, duration: 0.6 }}
+            style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "clamp(2.2rem, 5vw, 3.6rem)", lineHeight: "0.92", letterSpacing: "-0.03em", color: "#ffffff", marginBottom: "16px" }}
           >
-            Projetos <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-500">Desenvolvidos</span>
+            Projetos{" "}
+            <span style={{ color: "#F07820" }}>Desenvolvidos</span>
           </motion.h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="gold-line w-28 mx-auto mb-8"
-          />
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-slate text-base sm:text-lg max-w-xl mx-auto"
+            style={{ color: "#6B7280", fontFamily: "var(--font-inter)", fontWeight: 300, fontSize: "clamp(0.85rem, 1.3vw, 0.95rem)", maxWidth: "52ch", lineHeight: 1.7 }}
           >
-            Abaixo estão expostos os repositórios públicos extraídos dinamicamente do GitHub contendo algoritmos de IA, processamento de dados e scripts Python.
+            Repositórios públicos extraídos dinamicamente do GitHub — algoritmos de IA, processamento de dados e scripts Python.
           </motion.p>
         </div>
 
-        {/* Loading State */}
+        {/* ── Loading ── */}
         {loading && (
-          <div className="flex justify-center items-center py-24">
-            <div className="flex gap-2.5">
+          <div className="flex justify-center items-center py-32">
+            <div className="flex gap-2">
               {[0, 1, 2].map((i) => (
                 <motion.div
                   key={i}
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 }}
-                  className="w-3.5 h-3.5 bg-gold-400 rounded-full shadow-lg shadow-gold-500/20"
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 }}
+                  style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#F07820" }}
                 />
               ))}
             </div>
           </div>
         )}
 
-        {/* Error State */}
+        {/* ── Error ── */}
         {error && !loading && (
-          <div className="text-center py-16 bg-navy-900/50 border border-gold-600/10 rounded-2xl p-8 max-w-lg mx-auto">
-            <div className="text-5xl mb-4">🔧</div>
-            <h3 className="text-white text-lg font-bold mb-2">Erro ao conectar com o GitHub</h3>
-            <p className="text-slate text-sm mb-6">
-              Não conseguimos encontrar repositórios para o usuário <code className="text-gold-400">@{GITHUB_USERNAME}</code>.
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-md mx-auto text-center py-16"
+          >
+            <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: "rgba(240,120,32,0.10)", border: "1px solid rgba(240,120,32,0.25)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
+              <svg width="24" height="24" fill="none" stroke="#F07820" strokeWidth={1.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+              </svg>
+            </div>
+            <h3 style={{ color: "#ffffff", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", marginBottom: "8px" }}>Erro ao conectar com o GitHub</h3>
+            <p style={{ color: "#6B7280", fontFamily: "var(--font-inter)", fontSize: "13px", marginBottom: "20px" }}>
+              Não foi possível carregar os repositórios de <code style={{ color: "#F07820" }}>@{GITHUB_USERNAME}</code>.
             </p>
-            <a
-              href={`https://github.com/${GITHUB_USERNAME}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-gold-400 text-navy-900 font-bold px-6 py-3 rounded-xl text-sm transition-all hover:shadow-lg hover:shadow-gold-500/20"
-            >
-              Acessar GitHub Direto
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#F07820", color: "#fff", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "13px", padding: "10px 20px", borderRadius: "10px", textDecoration: "none" }}>
+              Acessar GitHub Direto →
             </a>
-          </div>
+          </motion.div>
         )}
 
-        {/* Grid Display (Editorial style: Index node + name + desc + tags + details + arrow) */}
+        {/* ── Grid de Cards ── */}
         {!loading && !error && repos.length > 0 && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {repos.map((repo, i) => (
-              <motion.a
-                key={repo.id}
-                href={repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative flex flex-col justify-between bg-navy-700/40 border border-gold-600/15 hover:border-gold-500/55 rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_36px_rgba(240,192,64,0.06)] backdrop-blur-sm z-10"
-              >
-                
-                {/* Visual Number Indicator & Link Icon on Top Row */}
-                <div className="flex justify-between items-start mb-6">
-                  <span className="font-display font-black text-3xl sm:text-4xl text-gold-600/35 transition-colors duration-300 group-hover:text-gold-500/70 select-none">
-                    {(i + 1).toString().padStart(2, "0")}
-                  </span>
-                  
-                  <div className="w-9 h-9 rounded-full bg-navy-800/80 border border-gold-600/10 flex items-center justify-center text-slate group-hover:text-gold-400 group-hover:border-gold-400 transition-all duration-300 group-hover:scale-105">
-                    <svg className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </div>
-                </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {repos.map((repo, i) => {
+              const langColor = LANG_COLORS[repo.language ?? ""] ?? "#6B7280";
+              return (
+                <motion.a
+                  key={repo.id}
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.09 }}
+                  whileHover={{ y: -6 }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    background: "#111111",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    textDecoration: "none",
+                    transition: "border-color 0.25s, box-shadow 0.25s",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,120,32,0.35)";
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 16px 48px rgba(0,0,0,0.40), 0 0 0 1px rgba(240,120,32,0.10)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.06)";
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+                  }}
+                >
+                  {/* Language color bar */}
+                  <div style={{ height: "3px", background: `linear-gradient(90deg, ${langColor}, ${langColor}88)` }} />
 
-                {/* Content Area */}
-                <div className="flex-1 flex flex-col justify-between">
-                  <div className="mb-6">
-                    <h3 className="font-display font-black text-white text-lg sm:text-xl leading-tight group-hover:text-gold-400 transition-colors duration-300 mb-3 break-all">
-                      {repo.name}
-                    </h3>
-                    <p className="text-slate text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">
-                      {repo.description ?? "Sem descrição fornecida no repositório público."}
-                    </p>
-                  </div>
-
-                  {/* Topics Tags */}
-                  {repo.topics && repo.topics.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {repo.topics.slice(0, 3).map((topic) => (
-                        <span
-                          key={topic}
-                          className="text-[9px] font-bold uppercase tracking-wider bg-navy-800 border border-gold-600/15 text-slate px-2.5 py-1 rounded-full group-hover:border-gold-500/35 transition-colors duration-300"
-                        >
-                          {topic}
-                        </span>
-                      ))}
+                  <div style={{ padding: "22px 24px", display: "flex", flexDirection: "column", flex: 1 }}>
+                    {/* Top row: number + link icon */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "2.2rem", color: "rgba(240,120,32,0.20)", lineHeight: 1, letterSpacing: "-0.04em", userSelect: "none" }}>
+                        {(i + 1).toString().padStart(2, "0")}
+                      </span>
+                      <div style={{ width: "32px", height: "32px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", color: "#4B5563", transition: "color 0.2s, border-color 0.2s" }}>
+                        <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </div>
                     </div>
-                  )}
-                </div>
 
-                {/* Card Footer (Language + Stars) */}
-                <div className="flex items-center justify-between pt-4 border-t border-gold-600/10">
-                  <LanguageDot lang={repo.language} />
-                  
-                  <div className="flex items-center gap-3.5 text-slate/75 text-xs font-semibold">
-                    {repo.stargazers_count > 0 && (
-                      <span className="flex items-center gap-1.5 text-gold-400">
-                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                        {repo.stargazers_count}
-                      </span>
+                    {/* Title */}
+                    <h3 style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "15px", color: "#ffffff", marginBottom: "8px", lineHeight: 1.3, wordBreak: "break-word" }}>
+                      {repo.name.replace(/-/g, " ").replace(/_/g, " ")}
+                    </h3>
+
+                    {/* Description */}
+                    <p style={{ fontFamily: "var(--font-inter)", fontWeight: 300, fontSize: "12px", color: "#6B7280", lineHeight: 1.7, marginBottom: "16px", flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                      {repo.description ?? "Repositório sem descrição. Acesse para ver o código."}
+                    </p>
+
+                    {/* Topics */}
+                    {repo.topics && repo.topics.length > 0 && (
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "16px" }}>
+                        {repo.topics.slice(0, 3).map((topic) => (
+                          <span key={topic} style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B7280", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "999px", padding: "3px 10px" }}>
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
                     )}
-                    {repo.forks_count > 0 && (
-                      <span className="flex items-center gap-1">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                        </svg>
-                        {repo.forks_count}
-                      </span>
-                    )}
+
+                    {/* Footer */}
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "14px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                      {/* Language */}
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        {repo.language && (
+                          <>
+                            <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: langColor, flexShrink: 0 }} />
+                            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: "11px", color: "#6B7280" }}>{repo.language}</span>
+                          </>
+                        )}
+                      </div>
+                      {/* Stars + updated */}
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        {repo.stargazers_count > 0 && (
+                          <span style={{ display: "flex", alignItems: "center", gap: "4px", fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "11px", color: "#F07820" }}>
+                            <svg width="11" height="11" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            {repo.stargazers_count}
+                          </span>
+                        )}
+                        <span style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: "10px", color: "#374151" }}>
+                          {timeAgo(repo.pushed_at)}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-              </motion.a>
-            ))}
+                </motion.a>
+              );
+            })}
           </div>
         )}
 
-        {/* Empty State */}
+        {/* ── Empty ── */}
         {!loading && !error && repos.length === 0 && (
-          <div className="text-center py-20 text-slate">
+          <p style={{ color: "#6B7280", textAlign: "center", padding: "80px 0", fontFamily: "var(--font-inter)" }}>
             Nenhum repositório público encontrado.
-          </div>
+          </p>
         )}
 
-        {/* Global CTA - Link to GitHub profile */}
-        {!loading && !error && (
-          <div className="text-center mt-16">
-            <motion.a
-              href={`https://github.com/${GITHUB_USERNAME}`}
+        {/* ── CTA GitHub ── */}
+        {!loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="text-center mt-14"
+          >
+            <a
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-3.5 border border-gold-600/35 hover:border-gold-400 text-gold-400 hover:bg-gold-500/10 px-8 py-4 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 hover:shadow-[0_0_20px_rgba(240,192,64,0.15)]"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "10px",
+                border: "1px solid rgba(240,120,32,0.30)", color: "#F07820",
+                fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "13px",
+                padding: "12px 24px", borderRadius: "10px", textDecoration: "none",
+                letterSpacing: "0.04em", transition: "border-color 0.2s, background 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "#F07820";
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(240,120,32,0.07)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 20px rgba(240,120,32,0.12)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,120,32,0.30)";
+                (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+              }}
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
               </svg>
-              Ver Todos os Projetos no GitHub
-            </motion.a>
-          </div>
+              Ver todos os projetos no GitHub
+            </a>
+          </motion.div>
         )}
+
       </div>
     </section>
   );
