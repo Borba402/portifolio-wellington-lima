@@ -70,8 +70,8 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-black text-white text-sm sm:text-base tracking-wide group-hover:text-gold-400 transition-colors duration-300">
-                Wellington Lima
+              <span className="font-display font-black text-white text-sm tracking-wide group-hover:text-gold-400 transition-colors duration-300">
+                Wellington Borba Lima
               </span>
               <span className="text-[10px] text-slate tracking-widest uppercase font-medium">
                 AI &amp; Data Specialist

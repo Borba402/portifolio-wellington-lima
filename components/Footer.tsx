@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="flex items-center gap-2">
               <span className="font-display font-black text-white text-base tracking-wide">
-                Wellington Lima
+                Wellington Borba Lima
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
               <span className="text-slate text-xs font-semibold uppercase tracking-wider">

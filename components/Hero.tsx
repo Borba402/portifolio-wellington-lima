@@ -238,11 +238,10 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* ── GIANT NAME — maximum typographic impact ── */}
-          {/* Skill: Display/Hero → letter-spacing -3% to -4%, line-height 0.85-0.90, weight 900 */}
+          {/* ── GIANT NAME — three lines for full name impact ── */}
           <h1
             className="select-none mb-6"
-            style={{ fontFamily: "var(--font-display)", lineHeight: "0.88" }}
+            style={{ fontFamily: "var(--font-display)", lineHeight: "0.90" }}
           >
             <motion.span
               initial={{ opacity: 0, x: -24 }}
@@ -251,7 +250,7 @@ export default function Hero() {
               className="block text-white"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(3.2rem, 7vw, 5.5rem)",
+                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
                 letterSpacing: "-0.035em",
               }}
             >
@@ -260,11 +259,24 @@ export default function Hero() {
             <motion.span
               initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.36, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="block text-white"
+              style={{
+                fontWeight: 900,
+                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
+                letterSpacing: "-0.035em",
+              }}
+            >
+              Borba
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.44, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
               className="block"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(3.2rem, 7vw, 5.5rem)",
+                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
                 letterSpacing: "-0.035em",
                 color: "#F07820",
                 textShadow: "0 0 48px rgba(240,120,32,0.35), 0 0 90px rgba(240,120,32,0.12)",

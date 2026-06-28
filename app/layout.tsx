@@ -17,13 +17,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Wellington Lima | Inteligência Artificial & Python",
+  title: "Wellington Borba Lima | Inteligência Artificial & Python",
   description:
     "Técnico em Inteligência Artificial em transição da carreira militar. Especializado em Python, IA Generativa e Machine Learning. São Paulo, SP.",
-  keywords: ["Inteligência Artificial", "Python", "Machine Learning", "IA Generativa", "Wellington Lima", "São Paulo"],
+  keywords: ["Inteligência Artificial", "Python", "Machine Learning", "IA Generativa", "Wellington Borba Lima", "Wellington Lima", "São Paulo"],
   authors: [{ name: "Wellington Borba Lima" }],
   openGraph: {
-    title: "Wellington Lima | IA & Python Developer",
+    title: "Wellington Borba Lima | IA & Python Developer",
     description: "Discipline · Artificial Intelligence · Python · Innovation & Technology",
     type: "website",
   },
