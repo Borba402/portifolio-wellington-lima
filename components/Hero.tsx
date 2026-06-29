@@ -64,7 +64,7 @@ export default function Hero() {
       {/* ══════════════════════════════════════════
           PHOTO PANEL — right half, absolutely placed
       ══════════════════════════════════════════ */}
-      <div className="absolute inset-y-0 right-0 w-[46%] md:w-[56%] z-0">
+      <div className="absolute inset-y-0 right-0 w-[56%] z-0 hidden md:block">
 
         {/* ── Atmospheric glow — BELOW face level only ── */}
         {/* Large background halo (low, subtle) */}
@@ -184,8 +184,8 @@ export default function Hero() {
       {/* ══════════════════════════════════════════
           TEXT CONTENT — left zone
       ══════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 min-h-screen flex items-center">
-        <div className="w-full max-w-[54%] md:max-w-[50%] pt-20 pb-8 md:py-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 min-h-screen flex items-start md:items-center">
+        <div className="w-full md:max-w-[50%] pt-20 pb-8 md:py-0 pr-[100px] sm:pr-0">
 
           {/* Editorial orange accent bar */}
           <motion.div
@@ -215,8 +215,7 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-[7px] w-[7px] bg-emerald-400" />
             </span>
             <span style={{ color: "#9CA3AF", fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: "12px", letterSpacing: "0.06em" }}>
-              <span className="hidden sm:inline">Open to Work · São Paulo, SP</span>
-              <span className="sm:hidden">Open to Work</span>
+              Open to Work · São Paulo, SP
             </span>
           </motion.div>
 
@@ -251,7 +250,7 @@ export default function Hero() {
               className="block text-white"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(1.85rem, 5.8vw, 4.8rem)",
+                fontSize: "clamp(2.2rem, 6vw, 4.8rem)",
                 letterSpacing: "-0.035em",
               }}
             >
@@ -264,7 +263,7 @@ export default function Hero() {
               className="block text-white"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(1.85rem, 5.8vw, 4.8rem)",
+                fontSize: "clamp(2.2rem, 6vw, 4.8rem)",
                 letterSpacing: "-0.035em",
               }}
             >
@@ -277,7 +276,7 @@ export default function Hero() {
               className="block"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(1.85rem, 5.8vw, 4.8rem)",
+                fontSize: "clamp(2.2rem, 6vw, 4.8rem)",
                 letterSpacing: "-0.035em",
                 color: "#F07820",
                 textShadow: "0 0 48px rgba(240,120,32,0.35), 0 0 90px rgba(240,120,32,0.12)",
@@ -491,6 +490,39 @@ export default function Hero() {
           <div style={{ width: "1px", height: "22px", background: "rgba(240,120,32,0.55)" }} />
         </div>
       </div>
+
+      {/* Mobile avatar — pequeno, circular, ao lado do nome */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="md:hidden absolute z-20"
+        style={{ top: "172px", right: "20px" }}
+      >
+        <div style={{
+          width: "88px", height: "88px",
+          borderRadius: "50%",
+          overflow: "hidden",
+          border: "2px solid rgba(240,120,32,0.60)",
+          boxShadow: "0 0 24px rgba(240,120,32,0.22), 0 4px 18px rgba(0,0,0,0.55)",
+          position: "relative",
+        }}>
+          <Image
+            src="/profile.png"
+            alt="Wellington Lima"
+            width={88}
+            height={88}
+            quality={90}
+            style={{ objectFit: "cover", objectPosition: "center 5%", width: "100%", height: "100%" }}
+          />
+        </div>
+        {/* Indicador Online */}
+        <div style={{
+          position: "absolute", bottom: "4px", right: "4px",
+          width: "14px", height: "14px", borderRadius: "50%",
+          background: "#34D399", border: "2px solid #080808",
+        }} />
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
