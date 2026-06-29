@@ -64,7 +64,7 @@ export default function Hero() {
       {/* ══════════════════════════════════════════
           PHOTO PANEL — right half, absolutely placed
       ══════════════════════════════════════════ */}
-      <div className="absolute inset-y-0 right-0 w-[56%] z-0 hidden md:block">
+      <div className="absolute inset-y-0 right-0 w-[46%] md:w-[56%] z-0">
 
         {/* ── Atmospheric glow — BELOW face level only ── */}
         {/* Large background halo (low, subtle) */}
@@ -184,8 +184,8 @@ export default function Hero() {
       {/* ══════════════════════════════════════════
           TEXT CONTENT — left zone
       ══════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 min-h-screen flex items-start md:items-center">
-        <div className="w-full md:max-w-[50%] pt-20 pb-8 md:py-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 min-h-screen flex items-center">
+        <div className="w-full max-w-[54%] md:max-w-[50%] pt-20 pb-8 md:py-0">
 
           {/* Editorial orange accent bar */}
           <motion.div
@@ -215,7 +215,8 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-[7px] w-[7px] bg-emerald-400" />
             </span>
             <span style={{ color: "#9CA3AF", fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: "12px", letterSpacing: "0.06em" }}>
-              Open to Work · São Paulo, SP
+              <span className="hidden sm:inline">Open to Work · São Paulo, SP</span>
+              <span className="sm:hidden">Open to Work</span>
             </span>
           </motion.div>
 
@@ -250,7 +251,7 @@ export default function Hero() {
               className="block text-white"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
+                fontSize: "clamp(1.85rem, 5.8vw, 4.8rem)",
                 letterSpacing: "-0.035em",
               }}
             >
@@ -263,7 +264,7 @@ export default function Hero() {
               className="block text-white"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
+                fontSize: "clamp(1.85rem, 5.8vw, 4.8rem)",
                 letterSpacing: "-0.035em",
               }}
             >
@@ -276,7 +277,7 @@ export default function Hero() {
               className="block"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(2.6rem, 6vw, 4.8rem)",
+                fontSize: "clamp(1.85rem, 5.8vw, 4.8rem)",
                 letterSpacing: "-0.035em",
                 color: "#F07820",
                 textShadow: "0 0 48px rgba(240,120,32,0.35), 0 0 90px rgba(240,120,32,0.12)",
@@ -307,8 +308,8 @@ export default function Hero() {
               color: "#9CA3AF",
               fontFamily: "var(--font-inter)",
               fontWeight: 300,
-              fontSize: "clamp(0.85rem, 1.4vw, 1rem)",
-              lineHeight: 1.7,
+              fontSize: "clamp(0.78rem, 1.4vw, 1rem)",
+              lineHeight: 1.65,
               maxWidth: "38ch",
             }}
           >
@@ -433,8 +434,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile photo — below text on small screens */}
-      <div className="md:hidden relative w-full" style={{ height: "460px" }}>
+      {/* Mobile photo — no longer needed (photo now shows inline like desktop) */}
+      <div className="hidden" style={{ height: "460px" }}>
         {/* Orange atmospheric glow at bottom */}
         <div
           className="absolute inset-0 z-[3] pointer-events-none"
