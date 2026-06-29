@@ -17,15 +17,33 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://wellingtonborbalima.com.br"),
   title: "Wellington Borba Lima | Inteligência Artificial & Python",
   description:
     "Técnico em Inteligência Artificial em transição da carreira militar. Especializado em Python, IA Generativa e Machine Learning. São Paulo, SP.",
   keywords: ["Inteligência Artificial", "Python", "Machine Learning", "IA Generativa", "Wellington Borba Lima", "Wellington Lima", "São Paulo"],
   authors: [{ name: "Wellington Borba Lima" }],
   openGraph: {
-    title: "Wellington Borba Lima | IA & Python Developer",
-    description: "Discipline · Artificial Intelligence · Python · Innovation & Technology",
+    title: "Wellington Borba Lima | IA & Python",
+    description: "Técnico em IA em transição da carreira militar. Python · IA Generativa · Machine Learning · São Paulo, SP.",
+    url: "https://wellingtonborbalima.com.br",
+    siteName: "Wellington Borba Lima",
     type: "website",
+    locale: "pt_BR",
+    images: [
+      {
+        url: "/banner.png",
+        width: 2172,
+        height: 724,
+        alt: "Wellington Lima — Discipline | Artificial Intelligence | Python | Innovation & Technology",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wellington Borba Lima | IA & Python",
+    description: "Técnico em IA em transição da carreira militar. Python · IA Generativa · Machine Learning.",
+    images: ["/banner.png"],
   },
 };
 
