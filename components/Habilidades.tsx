@@ -2,14 +2,12 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  { name: "Python", level: 65, category: "Python", color: "#3776AB" },
-  { name: "IA Generativa", level: 60, category: "IA", color: "#8B5CF6" },
-  { name: "Machine Learning", level: 55, category: "IA", color: "#8B5CF6" },
-  { name: "Análise de Dados", level: 62, category: "Dados", color: "#10B981" },
-  { name: "Deep Learning", level: 50, category: "IA", color: "#8B5CF6" },
-  { name: "Business Intelligence", level: 55, category: "Dados", color: "#10B981" },
-  { name: "PLN — Linguagem Natural", level: 45, category: "IA", color: "#8B5CF6" },
-  { name: "Visão Computacional", level: 45, category: "IA", color: "#8B5CF6" },
+  { name: "Python", level: 55, category: "Python", color: "#3776AB" },
+  { name: "IA Generativa", level: 50, category: "IA", color: "#8B5CF6" },
+  { name: "Machine Learning", level: 45, category: "IA", color: "#8B5CF6" },
+  { name: "Deep Learning", level: 35, category: "IA", color: "#8B5CF6" },
+  { name: "PLN — Linguagem Natural", level: 35, category: "IA", color: "#8B5CF6" },
+  { name: "Visão Computacional", level: 30, category: "IA", color: "#8B5CF6" },
   { name: "Gestão de Projetos", level: 85, category: "Gestão", color: "#F07820" },
 ];
 
@@ -17,7 +15,7 @@ const certifications = [
   {
     name: "Técnico em Inteligência Artificial",
     institution: "Senac São Paulo",
-    year: "2024 – Atual",
+    year: "2026 – Atual",
     status: "Em curso",
   },
   {

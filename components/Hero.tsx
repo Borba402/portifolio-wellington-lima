@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 const roles = [
   "Técnico em Inteligência Artificial",
   "Desenvolvedor Python",
-  "Especialista em IA Generativa",
-  "Analista de Dados",
+  "Entusiasta em IA Generativa",
+  "Em Formação Contínua",
 ];
 
 function TypingText() {
@@ -396,7 +396,7 @@ export default function Hero() {
           >
             {[
               { value: "8", label: "Anos Exército" },
-              { value: "2024", label: "Início em IA" },
+              { value: "2026", label: "Início em IA" },
               { value: "SP", label: "São Paulo" },
             ].map((stat, i) => (
               <div key={i} style={{ paddingRight: i < 2 ? "12px" : "0", borderRight: i < 2 ? "1px solid rgba(240,120,32,0.10)" : "none", paddingLeft: i > 0 ? "12px" : "0" }}>

@@ -25,17 +25,17 @@ const timelineSteps = [
   },
   {
     year: "2024",
-    title: "Transição para IA",
-    subtitle: "Carta de Referência · Senac SP",
-    description: "Licenciado com Carta de Referência do Cel. Cesar Augusto Moura. Início da formação em IA, Machine Learning e Python.",
+    title: "Projetista Executivo",
+    subtitle: "Móveis Planejados · Pós-Exército",
+    description: "Licenciado com Carta de Referência do Cel. Cesar Augusto Moura. Atuou com projetos personalizados de móveis planejados, desenvolvendo visão criativa, planejamento estratégico e atenção aos detalhes na construção de soluções para clientes.",
     highlight: true,
   },
   {
     year: "2026",
-    title: "Tecnologia de Impacto",
-    subtitle: "Em Evolução Contínua",
-    description: "Especialização em IA Generativa, análise de dados e desenvolvimento de sistemas inteligentes.",
-    highlight: false,
+    title: "Transição para IA",
+    subtitle: "Senac SP · SENAI · Em Formação",
+    description: "Início da formação técnica em Inteligência Artificial, Python e Machine Learning. Desenvolvimento de sistemas inteligentes com IA Generativa, aplicando a mesma dedicação da trajetória militar e profissional.",
+    highlight: true,
   },
 ];
 
@@ -43,7 +43,7 @@ const stats = [
   { value: "8", label: "Anos no Exército Brasileiro" },
   { value: "1º", label: "Colocado no Curso de Formação" },
   { value: "3º", label: "Sargento — Carreira Militar" },
-  { value: "2024", label: "Início da jornada em IA" },
+  { value: "2026", label: "Início da jornada em IA" },
 ];
 
 export default function Sobre() {

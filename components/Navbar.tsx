@@ -75,7 +75,7 @@ export default function Navbar() {
                 Wellington Borba Lima
               </span>
               <span className="text-[10px] text-slate tracking-widest uppercase font-medium">
-                AI &amp; Data Specialist
+                IA · Python · Em Formação
               </span>
             </div>
           </Link>

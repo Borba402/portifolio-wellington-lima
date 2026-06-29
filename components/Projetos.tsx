@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const GITHUB_USERNAME = "Borba402";
 const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
 // Repos to hide from the portfolio display
-const EXCLUDED_REPOS = ["portifolio-wellington-lima"];
+const EXCLUDED_REPOS = ["portifolio-wellington-lima", "suporte_tecnico", "Landpage_relogio", "EuOdonto2"];
 
 interface Repo {
   id: number;
