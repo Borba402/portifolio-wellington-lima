@@ -25,6 +25,12 @@ const certifications = [
     status: "Concluído",
   },
   {
+    name: "Aplicações com IA Generativa — Google Antigravity",
+    institution: 'SENAI "Ary Torres"',
+    year: "Jun 2026",
+    status: "Concluído",
+  },
+  {
     name: "Fundamentos do Python 1",
     institution: 'SENAI "Ary Torres"',
     year: "Mar 2026",
