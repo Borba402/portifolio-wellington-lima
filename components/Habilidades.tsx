@@ -165,7 +165,7 @@ export default function Habilidades() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-16">
 
           {/* Left — Skill bars */}
-          <div style={{ background: "rgba(8,8,8,0.50)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "20px", padding: "28px 32px" }}>
+          <div className="p-5 sm:p-7 lg:p-8" style={{ background: "rgba(8,8,8,0.50)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "20px" }}>
             <h3 style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "13px", color: "#ffffff", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "28px", display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ width: "3px", height: "18px", background: "#F07820", borderRadius: "2px" }} />
               Competências Técnicas
@@ -211,7 +211,7 @@ export default function Habilidades() {
           </div>
 
           {/* Right — Certifications */}
-          <div style={{ background: "rgba(8,8,8,0.50)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "20px", padding: "28px 32px" }}>
+          <div className="p-5 sm:p-7 lg:p-8" style={{ background: "rgba(8,8,8,0.50)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "20px" }}>
             <h3 style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "13px", color: "#ffffff", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "28px", display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ width: "3px", height: "18px", background: "#F07820", borderRadius: "2px" }} />
               Educação & Certificações

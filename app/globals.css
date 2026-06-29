@@ -78,6 +78,23 @@ body {
   z-index: 0;
 }
 
+/* ── Mobile global fixes ── */
+@media (max-width: 639px) {
+  section { overflow-x: hidden; }
+
+  /* Section headings tighter on small screens */
+  h1, h2 { word-break: break-word; }
+
+  /* Prevent long strings (email) from overflowing */
+  [style*="whiteSpace: nowrap"] { white-space: normal !important; }
+
+  /* Contact cards: readable on narrow screens */
+  .contact-value {
+    white-space: normal !important;
+    word-break: break-all;
+  }
+}
+
 /* ── Utilities ── */
 .gold-line {
   height: 1px;

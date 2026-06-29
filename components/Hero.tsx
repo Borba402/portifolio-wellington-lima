@@ -184,8 +184,8 @@ export default function Hero() {
       {/* ══════════════════════════════════════════
           TEXT CONTENT — left zone
       ══════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 min-h-screen flex items-center">
-        <div className="w-full md:max-w-[50%] py-32 md:py-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 min-h-screen flex items-start md:items-center">
+        <div className="w-full md:max-w-[50%] pt-20 pb-8 md:py-0">
 
           {/* Editorial orange accent bar */}
           <motion.div
@@ -322,7 +322,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 0.5 }}
-            className="flex flex-col sm:flex-row gap-3.5 mb-14"
+            className="flex flex-col sm:flex-row gap-3.5 mb-8 md:mb-14"
           >
             <Link
               href="#projetos"
@@ -330,17 +330,17 @@ export default function Hero() {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "14px 32px",
+                padding: "15px 32px",
                 background: "#F07820",
                 color: "#fff",
                 fontFamily: "var(--font-inter)",
                 fontWeight: 700,
-                fontSize: "13px",
+                fontSize: "14px",
                 letterSpacing: "0.05em",
-                borderRadius: "10px",
+                borderRadius: "12px",
                 textDecoration: "none",
                 transition: "all 0.25s ease",
-                boxShadow: "0 0 0 rgba(240,120,32,0)",
+                boxShadow: "0 4px 20px rgba(240,120,32,0.30)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 28px rgba(240,120,32,0.40)";
@@ -359,17 +359,17 @@ export default function Hero() {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "14px 32px",
-                border: "1px solid rgba(240,120,32,0.40)",
+                padding: "15px 32px",
+                border: "1px solid rgba(240,120,32,0.45)",
                 color: "#F07820",
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
-                fontSize: "13px",
+                fontSize: "14px",
                 letterSpacing: "0.05em",
-                borderRadius: "10px",
+                borderRadius: "12px",
                 textDecoration: "none",
                 transition: "all 0.25s ease",
-                background: "transparent",
+                background: "rgba(240,120,32,0.05)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLAnchorElement).style.borderColor = "#F07820";
@@ -391,7 +391,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.86, duration: 0.6 }}
-            className="flex gap-10 sm:gap-14 pt-8"
+            className="grid grid-cols-3 pt-6 md:pt-8"
             style={{ borderTop: "1px solid rgba(240,120,32,0.15)" }}
           >
             {[
@@ -399,14 +399,15 @@ export default function Hero() {
               { value: "2024", label: "Início em IA" },
               { value: "SP", label: "São Paulo" },
             ].map((stat, i) => (
-              <div key={i}>
+              <div key={i} style={{ paddingRight: i < 2 ? "12px" : "0", borderRight: i < 2 ? "1px solid rgba(240,120,32,0.10)" : "none", paddingLeft: i > 0 ? "12px" : "0" }}>
                 <div
                   style={{
                     fontFamily: "var(--font-display)",
                     fontWeight: 900,
-                    fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+                    fontSize: "clamp(1.4rem, 4vw, 2rem)",
                     color: "#F07820",
                     letterSpacing: "-0.02em",
+                    lineHeight: 1,
                   }}
                 >
                   {stat.value}
@@ -415,11 +416,12 @@ export default function Hero() {
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontWeight: 500,
-                    fontSize: "10px",
-                    color: "#9CA3AF",
-                    letterSpacing: "0.15em",
+                    fontSize: "9px",
+                    color: "#6B7280",
+                    letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    marginTop: "4px",
+                    marginTop: "6px",
+                    lineHeight: 1.3,
                   }}
                 >
                   {stat.label}
@@ -432,23 +434,61 @@ export default function Hero() {
       </div>
 
       {/* Mobile photo — below text on small screens */}
-      <div className="md:hidden relative w-full h-[340px]">
+      <div className="md:hidden relative w-full" style={{ height: "460px" }}>
+        {/* Orange atmospheric glow at bottom */}
+        <div
+          className="absolute inset-0 z-[3] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at 50% 105%, rgba(240,120,32,0.22) 0%, transparent 55%)" }}
+        />
         <Image
           src="/profile.png"
           alt="Wellington Lima"
           fill
-          className="object-cover object-top"
+          className="object-cover"
+          style={{ objectPosition: "center 8%" }}
           quality={95}
           sizes="100vw"
         />
+        {/* Bottom fade */}
         <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, #080808 0%, rgba(8,8,8,0.25) 35%, transparent 60%)" }}
+          className="absolute inset-0 z-[2]"
+          style={{ background: "linear-gradient(to top, #080808 0%, rgba(8,8,8,0.08) 28%, transparent 52%)" }}
         />
+        {/* Top fade */}
         <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, rgba(8,8,8,0.50) 0%, transparent 20%)" }}
+          className="absolute inset-0 z-[2]"
+          style={{ background: "linear-gradient(to bottom, rgba(8,8,8,0.38) 0%, transparent 18%)" }}
         />
+        {/* Tech stack badge — top right */}
+        <div className="absolute top-4 right-4 z-[4]">
+          <div className="bg-[rgba(8,8,8,0.88)] border border-[rgba(240,120,32,0.50)] rounded-xl px-3 py-2 shadow-2xl backdrop-blur-md">
+            <div style={{ color: "#F07820", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "8px", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+              Tech Stack
+            </div>
+            <div style={{ color: "#fff", fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "10px", marginTop: "2px" }}>
+              IA · Python · ML
+            </div>
+          </div>
+        </div>
+        {/* Open to Work badge — bottom right */}
+        <div className="absolute bottom-6 right-4 z-[4]">
+          <div className="bg-[rgba(6,20,6,0.92)] border border-[rgba(52,211,153,0.40)] rounded-xl px-3 py-2 shadow-xl backdrop-blur-md">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              </span>
+              <span style={{ color: "#6ee7b7", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+                Open to Work
+              </span>
+            </div>
+          </div>
+        </div>
+        {/* Corner accent — top left editorial bracket */}
+        <div className="absolute top-4 left-4 z-[4]">
+          <div style={{ width: "22px", height: "1px", background: "rgba(240,120,32,0.55)" }} />
+          <div style={{ width: "1px", height: "22px", background: "rgba(240,120,32,0.55)" }} />
+        </div>
       </div>
 
       {/* Scroll indicator */}

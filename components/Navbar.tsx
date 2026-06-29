@@ -197,30 +197,43 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-navy-900/95 backdrop-blur-2xl border-b border-gold-600/15"
+            className="md:hidden overflow-hidden border-b border-gold-600/15"
+            style={{ background: "rgba(8,8,8,0.97)", backdropFilter: "blur(24px)" }}
           >
-            <div className="px-4 pt-2 pb-6 space-y-2 max-w-7xl mx-auto">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`block px-4 py-3 rounded-xl text-base font-semibold transition-all ${
-                      isActive
-                        ? "text-gold-400 bg-navy-800/60 border-l-2 border-gold-400"
-                        : "text-slate hover:text-white hover:bg-navy-800/30"
-                    }`}
-                    onClick={() => {
-                      setMenuOpen(false);
-                      setActiveSection(link.href.substring(1));
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-              <div className="pt-2 px-4 flex flex-col gap-3">
+            <div className="px-4 pt-3 pb-5 max-w-7xl mx-auto">
+              {/* Nav links */}
+              <div className="space-y-1 mb-4">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.href.substring(1);
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-semibold transition-all ${
+                        isActive
+                          ? "bg-[rgba(240,120,32,0.10)] border border-[rgba(240,120,32,0.30)]"
+                          : "border border-transparent hover:bg-[rgba(255,255,255,0.04)]"
+                      }`}
+                      style={{ color: isActive ? "#F07820" : "#9CA3AF" }}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        setActiveSection(link.href.substring(1));
+                      }}
+                    >
+                      {isActive && (
+                        <span style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#F07820", flexShrink: 0 }} />
+                      )}
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Divider */}
+              <div style={{ height: "1px", background: "rgba(240,120,32,0.10)", marginBottom: "16px" }} />
+
+              {/* CTA buttons */}
+              <div className="flex flex-col gap-3">
                 <a
                   href="/carta-de-referencia.pdf"
                   target="_blank"
@@ -230,8 +243,8 @@ export default function Navbar() {
                     alignItems: "center",
                     justifyContent: "center",
                     gap: "8px",
-                    padding: "12px",
-                    border: "1px solid rgba(240,120,32,0.35)",
+                    padding: "13px",
+                    border: "1px solid rgba(240,120,32,0.30)",
                     borderRadius: "12px",
                     background: "rgba(240,120,32,0.06)",
                     color: "#F07820",
@@ -249,8 +262,21 @@ export default function Navbar() {
                 </a>
                 <Link
                   href="#contato"
-                  className="block text-center bg-gradient-to-r from-gold-500 to-gold-400 text-navy-900 font-bold py-3.5 rounded-xl hover:shadow-[0_0_20px_rgba(240,192,64,0.25)] transition-all duration-300"
                   onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "14px",
+                    background: "#F07820",
+                    borderRadius: "12px",
+                    color: "#fff",
+                    fontFamily: "var(--font-inter)",
+                    fontWeight: 700,
+                    fontSize: "14px",
+                    textDecoration: "none",
+                    boxShadow: "0 4px 20px rgba(240,120,32,0.30)",
+                  }}
                 >
                   Fale comigo
                 </Link>

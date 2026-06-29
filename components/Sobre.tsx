@@ -53,7 +53,7 @@ export default function Sobre() {
       <div className="absolute bottom-0 left-0 w-96 h-96 pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(139,92,246,0.03) 0%, transparent 65%)", filter: "blur(80px)" }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
           {/* ── Left — Texto + Stats ── */}
           <div>
