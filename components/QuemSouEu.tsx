@@ -133,7 +133,7 @@ export default function QuemSouEu() {
               lineHeight: 1.7,
             }}
           >
-            Por trás do código e das habilidades, existe uma pessoa — e essa parte também importa.
+            Por trás do código e das habilidades, existe uma pessoa, e essa parte também importa.
           </motion.p>
         </div>
 
