@@ -70,7 +70,16 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <div className="flex flex-col">
+            {/* Mobile: só iniciais */}
+            <span
+              className="md:hidden font-display font-black text-white group-hover:text-gold-400 transition-colors duration-300"
+              style={{ fontSize: "18px", letterSpacing: "-0.02em" }}
+            >
+              W<span style={{ color: "#F07820" }}>L</span>
+            </span>
+
+            {/* Desktop: nome completo + subtítulo */}
+            <div className="hidden md:flex flex-col">
               <span className="font-display font-black text-white text-sm tracking-wide group-hover:text-gold-400 transition-colors duration-300">
                 Wellington Borba Lima
               </span>
