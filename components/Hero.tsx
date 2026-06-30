@@ -5,8 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const roles = [
-  "Técnico em Inteligência Artificial",
-  "Desenvolvedor Python",
+  "Cursando Técnico em IA · Senac SP",
+  "Desenvolvedor Python · Em Evolução",
   "Entusiasta em IA Generativa",
   "Em Formação Contínua",
 ];
@@ -185,7 +185,7 @@ export default function Hero() {
           TEXT CONTENT — left zone
       ══════════════════════════════════════════ */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 min-h-screen flex items-start md:items-center">
-        <div className="w-full md:max-w-[50%] pt-20 pb-8 md:py-0 pr-[100px] sm:pr-0">
+        <div className="w-full md:max-w-[50%] pt-20 pb-8 md:py-0 pr-[124px] sm:pr-0">
 
           {/* Editorial orange accent bar */}
           <motion.div
@@ -497,29 +497,29 @@ export default function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
         className="md:hidden absolute z-20"
-        style={{ top: "172px", right: "20px" }}
+        style={{ top: "160px", right: "16px" }}
       >
         <div style={{
-          width: "88px", height: "88px",
+          width: "112px", height: "112px",
           borderRadius: "50%",
           overflow: "hidden",
-          border: "2px solid rgba(240,120,32,0.60)",
-          boxShadow: "0 0 24px rgba(240,120,32,0.22), 0 4px 18px rgba(0,0,0,0.55)",
+          border: "2.5px solid rgba(240,120,32,0.65)",
+          boxShadow: "0 0 28px rgba(240,120,32,0.25), 0 6px 22px rgba(0,0,0,0.60)",
           position: "relative",
         }}>
           <Image
             src="/profile.png"
             alt="Wellington Lima"
-            width={88}
-            height={88}
+            width={112}
+            height={112}
             quality={90}
             style={{ objectFit: "cover", objectPosition: "center 5%", width: "100%", height: "100%" }}
           />
         </div>
         {/* Indicador Online */}
         <div style={{
-          position: "absolute", bottom: "4px", right: "4px",
-          width: "14px", height: "14px", borderRadius: "50%",
+          position: "absolute", bottom: "5px", right: "5px",
+          width: "16px", height: "16px", borderRadius: "50%",
           background: "#34D399", border: "2px solid #080808",
         }} />
       </motion.div>
