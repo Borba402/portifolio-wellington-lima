@@ -2,14 +2,21 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  { name: "Python", level: 55, category: "Python", color: "#3776AB" },
-  { name: "IA Generativa", level: 50, category: "IA", color: "#8B5CF6" },
-  { name: "Machine Learning", level: 45, category: "IA", color: "#8B5CF6" },
-  { name: "Deep Learning", level: 35, category: "IA", color: "#8B5CF6" },
-  { name: "PLN — Linguagem Natural", level: 35, category: "IA", color: "#8B5CF6" },
-  { name: "Visão Computacional", level: 30, category: "IA", color: "#8B5CF6" },
-  { name: "Gestão de Projetos", level: 85, category: "Gestão", color: "#F07820" },
+  { name: "Python", label: "Aplicação prática", category: "Python", color: "#3776AB" },
+  { name: "IA Generativa", label: "Em desenvolvimento", category: "IA", color: "#8B5CF6" },
+  { name: "Machine Learning", label: "Em desenvolvimento", category: "IA", color: "#8B5CF6" },
+  { name: "Deep Learning", label: "Fundamentos sólidos", category: "IA", color: "#8B5CF6" },
+  { name: "PLN — Linguagem Natural", label: "Aprendizado contínuo", category: "IA", color: "#8B5CF6" },
+  { name: "Visão Computacional", label: "Aprendizado contínuo", category: "IA", color: "#8B5CF6" },
+  { name: "Gestão de Projetos", label: "Aplicação prática", category: "Gestão", color: "#F07820" },
 ];
+
+const labelStyle: Record<string, { color: string; bg: string; border: string }> = {
+  "Aplicação prática":   { color: "#F07820", bg: "rgba(240,120,32,0.10)",  border: "rgba(240,120,32,0.28)"  },
+  "Em desenvolvimento":  { color: "#8B5CF6", bg: "rgba(139,92,246,0.10)",  border: "rgba(139,92,246,0.28)"  },
+  "Fundamentos sólidos": { color: "#3B82F6", bg: "rgba(59,130,246,0.10)",  border: "rgba(59,130,246,0.28)"  },
+  "Aprendizado contínuo":{ color: "#6B7280", bg: "rgba(107,114,128,0.08)", border: "rgba(107,114,128,0.22)" },
+};
 
 const certifications = [
   {
@@ -175,11 +182,33 @@ export default function Habilidades() {
               Competências Técnicas
             </h3>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              {skills.map((skill, index) => (
-                <div key={skill.name}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "8px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              {skills.map((skill, index) => {
+                const ls = labelStyle[skill.label];
+                return (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.06 }}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "space-between",
+                      background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.05)",
+                      borderRadius: "12px", padding: "12px 16px",
+                      transition: "border-color 0.2s, background 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = `${skill.color}33`;
+                      (e.currentTarget as HTMLElement).style.background = `${skill.color}08`;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.05)";
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.025)";
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: skill.color, flexShrink: 0 }} />
                       <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "13px", color: "#e5e7eb" }}>
                         {skill.name}
                       </span>
@@ -193,24 +222,18 @@ export default function Habilidades() {
                         {categoryLabel[skill.category]}
                       </span>
                     </div>
-                    <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "11px", color: "#4B5563" }}>
-                      {skill.level}%
+                    <span style={{
+                      fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "10px",
+                      letterSpacing: "0.06em", whiteSpace: "nowrap",
+                      color: ls.color, background: ls.bg,
+                      border: `1px solid ${ls.border}`,
+                      borderRadius: "6px", padding: "3px 9px",
+                    }}>
+                      {skill.label}
                     </span>
-                  </div>
-                  <div style={{ height: "5px", background: "rgba(255,255,255,0.05)", borderRadius: "999px", overflow: "hidden" }}>
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true, margin: "-80px" }}
-                      transition={{ duration: 1.2, ease: "easeOut", delay: index * 0.06 }}
-                      style={{
-                        height: "100%", borderRadius: "999px",
-                        background: `linear-gradient(90deg, ${skill.color}CC, ${skill.color})`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
